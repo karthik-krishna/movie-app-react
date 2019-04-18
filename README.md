@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and uses redux for state management system and consists of 2 pages home and upcoming, home page gives you list of all the movies based on the search query and upcoming movies page gives you a list of all upcoming movies . The application uses axios for http requests and uses TMDB apis. 
 
 ## Available Scripts
 
