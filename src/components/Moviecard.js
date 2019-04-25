@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class MovieCard extends Component {
    render() {
       return (
+        <Link to={"/movie-detail/"+this.props.data.id}>
         <div className="col-sm-12">
           <div className="media">
             <div className="media-left">
@@ -20,6 +21,7 @@ class MovieCard extends Component {
           </div>
           <hr />
         </div>
+        </Link>
       );
    }
 }

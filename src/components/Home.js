@@ -29,7 +29,7 @@ class Home extends Component {
    componentWillReceiveProps(newProps) {    
     let moviesList=this.state.listofMoviesResult;
     newProps.listofMovies.results.map((item)=>{
-      moviesList.push(item);
+       moviesList.push(item);
     })
     
     this.setState({
