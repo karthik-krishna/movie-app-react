@@ -38,5 +38,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### Making a Progressive Web App
 
-Run command `npm run build` , since PWA's work only in production build and serve the application using `serve -s build`. In order to serve the app, install serve by running `npm install -g serve`.
+In order to serve the app, install serve by running `npm install -g serve`. Run command `npm run build` , since PWA's work only in production build and serve the application using `serve -s build`.
 
