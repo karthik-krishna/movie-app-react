@@ -7,10 +7,10 @@ export const fetchMovies = (movies) => {
   }
 };
 
-export const fetchUpcomingMovies = (movies) => {
+export const fetchUpcomingMovies = (upcomingmovies) => {
   return {
     type: 'GET_UPCOMING_MOVIES',
-    movies
+    upcomingmovies
   }
 };
 

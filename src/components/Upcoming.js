@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header  from "../Header";
 import MovieCard from './Moviecard'
-
+import Pagination from './Pagination'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -18,38 +18,24 @@ class Upcoming extends Component {
   }
 
   loadMoreMovies= (page)=>{
-    let pageNo=page+1;
-    this.setState({page:pageNo});
-    this.props.actions.getUpcomingMovies(pageNo) 
+    this.props.actions.getUpcomingMovies(page) 
   }
 
-  componentWillReceiveProps(newProps) {  
-  let moviesList=this.state.listofMoviesResult;
-    newProps.listofMovies.results.map((item)=>{
-      moviesList.push(item);
-    })  
-    this.setState({
-        listofMoviesResult:moviesList
-      });
-   }
+  
 
    render() {
+    console.log(this.props)
       return (
         <div>
         <Header />
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-            {this.state.listofMoviesResult.map((item, i) => <MovieCard 
-                  key = {i} data = {item}/>)}
+            {this.props.listofUpcomingMovies.results ? this.props.listofUpcomingMovies.results.map((item, i) => <MovieCard 
+                  key = {i} data = {item}/>) : null}
             </div>
 
-            <div className="text-center">
-              { this.state.listofMoviesResult.length>0 && this.props.listofMovies.results.length>0 && <button className="btn btn-default" onClick={() => this.loadMoreMovies(this.state.page)} >Load More</button> }
-            </div>
-            <div className="text-center">
-            { this.state.listofMoviesResult.length>0 && this.props.listofMovies.results.length===0 && 'Thats all folks'}
-            </div>
+            {this.props.listofUpcomingMovies.results ? <Pagination totalPages={this.props.listofUpcomingMovies.total_pages} paginate={this.loadMoreMovies} /> : null }
 
           </div>
         </div>
@@ -60,7 +46,7 @@ class Upcoming extends Component {
 
 
 const mapStateToProps = state => ({
-  listofMovies: state.movies
+  listofUpcomingMovies: state.upcomingMovies
 })
 
 const mapDispatchToProps = dispatch => ({

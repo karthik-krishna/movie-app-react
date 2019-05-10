@@ -46,10 +46,10 @@ class MovingDetail extends Component {
                         </ul>
                       </li>
                       <li>Revenue : {this.props.moviedetail.revenue}</li>
-                      <li>Videos &amp; Trailers: { this.props.moviedetail.videos && this.props.moviedetail.videos.results.length==0 ? 'None' : null}
+                      <li>Videos &amp; Trailers: { this.props.moviedetail.videos && this.props.moviedetail.videos.results.length===0 ? 'None' : null}
                         <ul>
                           {this.props.moviedetail.videos ? this.props.moviedetail.videos.results.map((item)=> <li key={item.id} className="inline"> 
-                            <iframe width="250px" height="300px" src={"https://www.youtube.com/embed/"+item.key} ></iframe></li> ) : null }
+                            <iframe width="250px" height="300px" src={"https://www.youtube.com/embed/"+item.key} title={item.key}></iframe></li> ) : null }
                         </ul>
                       </li>
                   </ul>

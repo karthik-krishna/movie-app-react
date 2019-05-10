@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header  from "../Header";
 import MovieCard from './Moviecard'
+import Pagination from './Pagination'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -10,7 +11,7 @@ let searchquery='';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {listofMoviesResult: [], page:1}
+    this.state = {listofMoviesResult: []}
   }
   
   handleInput=(e)=>{
@@ -18,29 +19,15 @@ class Home extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.actions.getMovies(searchquery,this.state.page) 
+    this.props.actions.getMovies(searchquery,1) 
   }
+
   loadMoreMovies= (page)=>{
-    let pageNo=page+1;
-    this.setState({page:pageNo});
-    this.props.actions.getMovies(searchquery, pageNo) 
+    this.props.actions.getMovies(searchquery, page) 
   }
-
-   componentWillReceiveProps(newProps) {    
-    let moviesList=this.state.listofMoviesResult;
-    newProps.listofMovies.results.map((item)=>{
-       moviesList.push(item);
-    })
-    
-    this.setState({
-        listofMoviesResult:moviesList
-      });
-   }
-
-   
-   
    
    render() {
+    console.log(this.props)
       return (
         <div>
         <Header />
@@ -62,16 +49,10 @@ class Home extends Component {
             </div>
             <hr/>
             <div>
-            {this.state.listofMoviesResult.map((item, i) => <MovieCard 
-                  key = {i} data = {item}/>)}
+            {this.props.listofMovies.results ? this.props.listofMovies.results.map((item, i) => <MovieCard 
+                  key = {i} data = {item}/>) : null}
             </div>
-            <div className="text-center">
-              { this.state.listofMoviesResult.length>0 && this.props.listofMovies.results.length>0 && <button className="btn btn-default" onClick={() => this.loadMoreMovies(this.state.page)} >Load More</button> }
-            </div>
-            <div className="text-center">
-            { this.state.listofMoviesResult.length>0 && this.props.listofMovies.results.length===0 && 'Thats all folks'}
-            </div>
-
+            {this.props.listofMovies.results ? <Pagination totalPages={this.props.listofMovies.total_pages} paginate={this.loadMoreMovies} /> : null }
           </div>
         </div>
         </div>
