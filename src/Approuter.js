@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import Home from './components/Home';
-import Upcoming from './components/Upcoming';
-import MovingDetail from './components/Moviedetail';
+import Home from './containers/Home';
+import Upcoming from './containers/Upcoming';
+import MovingDetail from './containers/Moviedetail';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class AppRouter extends Component {

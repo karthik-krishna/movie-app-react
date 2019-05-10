@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Header  from "../Header";
-import MovieCard from './Moviecard'
-import Pagination from './Pagination'
+import Header  from "../layouts/Header";
+import Footer  from "../layouts/Footer";
+import MovieCard from '../components/Moviecard'
+import Pagination from '../components/Pagination'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -39,6 +40,7 @@ class Upcoming extends Component {
 
           </div>
         </div>
+        <Footer />
         </div>
       );
    }

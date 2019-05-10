@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Header  from "../Header";
+import Header  from "../layouts/Header";
+import Footer  from "../layouts/Footer";
 
 import {getMovieDetails} from '../actions'
 import { bindActionCreators } from 'redux';
@@ -58,6 +59,7 @@ class MovingDetail extends Component {
             </div>
           </div>
         </div>
+        <Footer />
         </div>
       );
    }

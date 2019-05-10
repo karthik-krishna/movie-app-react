@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Header  from "../Header";
-import MovieCard from './Moviecard'
-import Pagination from './Pagination'
+import Header  from "../layouts/Header";
+import Footer  from "../layouts/Footer";
+import MovieCard from '../components/Moviecard'
+import Pagination from '../components/Pagination'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -55,6 +56,7 @@ class Home extends Component {
             {this.props.listofMovies.results ? <Pagination totalPages={this.props.listofMovies.total_pages} paginate={this.loadMoreMovies} /> : null }
           </div>
         </div>
+        <Footer />
         </div>
       );
    }
