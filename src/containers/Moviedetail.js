@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
 import ProgressBar from '../components/ProgressBar'
 
-import { getMovieDetails } from '../actions'
+import { getMovieDetails, getSimilarMovies } from '../actions'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class MovingDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { listofMoviesResult: [], page: 1, base: 'https://image.tmdb.org/t/p/' }
+    this.state = { base: 'https://image.tmdb.org/t/p' }
   }
 
   componentDidMount() {
     this.props.actions.getMovieDetails(this.props.match.params.id);
   }
 
-  shouldComponentUpdate(nextProps) {
-    const differentTitle = this.props.moviedetail.id !== nextProps.moviedetail.id;
-    return differentTitle;
+  getsimilar = () => {
+    this.props.actions.getSimilarMovies(this.props.match.params.id)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.actions.getMovieDetails(this.props.match.params.id);
+      window.scroll(0,0);
+    }
   }
 
 
+
   render() {
-    console.log(this.props)
     const bgPoster = {
       backgroundImage: 'url(' + this.state.base + '/w1400_and_h450_face' + this.props.moviedetail.backdrop_path + ')'
     }
@@ -44,7 +52,7 @@ class MovingDetail extends Component {
             <div className="col-sm-12">
               <div className="media">
                 <div className="media-left">
-                  <img src={this.props.moviedetail.poster_path ? 'https://image.tmdb.org/t/p/w200/' + this.props.moviedetail.poster_path : 'https://via.placeholder.com/200'} onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/200x300" }} alt="poster" className="img-thumbnail" style={maxWidth} />
+                  <img src={this.props.moviedetail.poster_path ? 'https://image.tmdb.org/t/p/w200/' + this.props.moviedetail.poster_path : 'https://via.placeholder.com/200x300'} onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/200x300" }} alt="poster" className="img-thumbnail" style={maxWidth} />
                 </div>
                 <div className="media-body bg-detail">
                   <h4 className="media-heading"><span>{this.props.moviedetail.title} <small>{this.props.moviedetail.tagline}</small> </span> : {this.props.moviedetail.release_date}</h4>
@@ -61,30 +69,43 @@ class MovingDetail extends Component {
                       </ul>
                     </li>
                     <li>Revenue : {this.props.moviedetail.revenue}</li>
-
-                {this.props.moviedetail.videos ? this.props.moviedetail.videos.results.map((item) => <div key={item.id} className="col-md-6">
-                  <iframe width="100%" height="300" frameborder="0" allow="autoplay; encrypted-media" src={"https://www.youtube.com/embed/" + item.key} title={item.key}></iframe></div>) : null}
-                       
                   </ul>
+                  <ul className="nav nav-tabs nav-justified">
+                    <li className="active"><a data-toggle="tab" href="#trailer">Trailers</a></li>
+                    <li><a data-toggle="tab" href="#similar" onClick={this.getsimilar} >Similar Movies</a></li>
+                  </ul>
+                  <div className="tab-content">
+                    <div id="trailer" className="tab-pane fade in active">
+                      <h3>Trailers</h3>
+                      {this.props.moviedetail.videos ? this.props.moviedetail.videos.results.map((item) => <div key={item.id} className="col-md-6">
+                        <iframe width="100%" height="300" frameBorder="0" allow="autoplay; encrypted-media" src={"https://www.youtube.com/embed/" + item.key} title={item.key}></iframe></div>) : null}
+                    </div>
+                    <div id="similar" className="tab-pane fade">
+                      <h3>Similar Movies</h3>
+                      {this.props.similar.results ? this.props.similar.results.map((item) => <div key={item.id} className="col-md-3">
+                        <Link to={"/movie-detail/" + item.id}><img className="img-thumbnail margintb" src={this.state.base + '/w200' + item.poster_path} title={item.key} /></Link></div>) : null}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
         </div >
-      <Footer />
-        </div >
-      );
+        <Footer />
+      </div >
+    );
   }
 }
 
 
 const mapStateToProps = state => ({
-  moviedetail: state.moviedetail
+  moviedetail: state.moviedetail.detail,
+  similar: state.moviedetail.similarmovies
 })
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    getMovieDetails
+    getMovieDetails, getSimilarMovies
   }, dispatch)
 })
 

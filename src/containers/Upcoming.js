@@ -20,6 +20,7 @@ class Upcoming extends Component {
 
   loadMoreMovies= (page)=>{
     this.props.actions.getUpcomingMovies(page) 
+    window.scroll(0,0)
   }
 
    render() {

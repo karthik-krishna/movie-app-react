@@ -12,7 +12,7 @@ let searchquery = '';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { listofMoviesResult: [], page: 1, listing:'NOW_PLAYING' }
+    this.state = { page: 1, listing:'NOW_PLAYING' }
   }
 
   componentDidMount() {
@@ -36,11 +36,10 @@ class Home extends Component {
     else if (this.state.listing==='SEARCH') {
       this.props.actions.getMovies(searchquery, page)
     }
-    
+    window.scroll(0,0)    
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <Header />
