@@ -15,6 +15,7 @@ class AppRouter extends Component {
 	            <Route path="/" exact component={Home} />
 	            <Route path="/upcoming" component={Upcoming} />
 	            <Route path="/movie-detail/:id" component={MovingDetail} />
+				
 	          </div>
 	        </Router>
         </div>

@@ -7,6 +7,13 @@ export const fetchMovies = (movies) => {
   }
 };
 
+export const fetchNowPlayingMovies = (nowPlaying) => {
+  return {
+    type: 'GET_NOW_PLAYING_MOVIES',
+    nowPlaying
+  }
+};
+
 export const fetchUpcomingMovies = (upcomingmovies) => {
   return {
     type: 'GET_UPCOMING_MOVIES',
@@ -15,11 +22,25 @@ export const fetchUpcomingMovies = (upcomingmovies) => {
 };
 
 export const fetchMovieDetails = (movieDetail) => {
+ 
   return {
     type: 'GET_MOVIES_DETAILS',
     movieDetail
   }
 };
+
+export const getNowPlayingMovies = (page) => {
+  return (dispatch) => {
+    return axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=84c481f0a53d6c1b488b947bd25286ba&language=en-US&page='+page)
+      .then(response => {
+        dispatch(fetchNowPlayingMovies(response.data))
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+};
+
 
 export const getMovies = (query,page) => {
   return (dispatch) => {
@@ -46,6 +67,7 @@ export const getUpcomingMovies = (page) => {
 };
 
 export const getMovieDetails = (movieId) => {
+ 
   return (dispatch) => {
     return axios.get('https://api.themoviedb.org/3/movie/'+movieId+'?api_key=84c481f0a53d6c1b488b947bd25286ba&append_to_response=videos')
       .then(response => {

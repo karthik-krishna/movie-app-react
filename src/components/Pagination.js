@@ -10,7 +10,6 @@ class Pagination extends Component {
     }
 
   handleBack(){
-    console.log(this.state.currentPage)
     this.setState({
       currentPage:this.state.currentPage-1
     })

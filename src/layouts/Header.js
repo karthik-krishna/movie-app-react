@@ -7,10 +7,10 @@ class Header extends Component {
 
       return (
          <header className="">
-          <nav className="navbar navbar-inverse">
+          <nav className="navbar navbar-inverse navbar-fixed-top">
             <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href=""> Movie App</a>
+                <Link to="/" className="navbar-brand" > Movie App</Link>
               </div>
               <ul className="nav navbar-nav">
                 <li className={route==='/' ? 'active' : ''}><Link to="/">Home</Link></li>

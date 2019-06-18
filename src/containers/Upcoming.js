@@ -22,16 +22,15 @@ class Upcoming extends Component {
     this.props.actions.getUpcomingMovies(page) 
   }
 
-  
-
    render() {
-    console.log(this.props)
       return (
         <div>
         <Header />
-        <div className="container">
+        <div className="container padtop">
           <div className="row">
             <div className="col-sm-12">
+            <h2>Upcoming Movies List</h2>
+            <hr/>
             {this.props.listofUpcomingMovies.results ? this.props.listofUpcomingMovies.results.map((item, i) => <MovieCard 
                   key = {i} data = {item}/>) : null}
             </div>
