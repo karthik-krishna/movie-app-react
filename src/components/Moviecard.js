@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import ProgressBar from './ProgressBar'
 
 class MovieCard extends Component {
-   render() {
-      return (
-        <Link to={"/movie-detail/"+this.props.data.id}>
-        <div className="col-sm-12">
-          <div className="media">
-            <div className="media-left">
-              <img src={this.props.data.poster_path ? 'https://image.tmdb.org/t/p/w200/'+this.props.data.poster_path : 'https://via.placeholder.com/200'} alt="poster" />
+  render() {
+    return (
+      <div className="col-sm-12 ">
+        <div className="media card">
+          <div className="media-left">
+            <img src={this.props.data.poster_path ? 'https://image.tmdb.org/t/p/w200/' + this.props.data.poster_path : 'https://via.placeholder.com/200'} alt="poster" />
+          </div>
+          <div className="media-body">
+            <h4 className="media-heading"><Link to={"/movie-detail/" + this.props.data.id} >{this.props.data.title}</Link> : {this.props.data.release_date}</h4>
+            <div class="block-with-text">
+              {this.props.data.overview}
+              <div className="gradientDiv"></div>
             </div>
-            <div className="media-body">
-              <h4 className="media-heading"><span>{this.props.data.title}</span> : {this.props.data.release_date}</h4>
-              <p>{this.props.data.overview}</p>
-              <ul>
-                <li>Is <b>A</b> Rated : <b>{this.props.data.adult ? 'Yes' : 'No'}</b></li>
-                <li>Vote average is <b>{this.props.data.vote_average}</b> out of <b>{this.props.data.vote_count}</b> votes</li>
-              </ul>
+            <ul>
+              <li>Is <b>A</b> Rated : <b>{this.props.data.adult ? 'Yes' : 'No'}</b></li>
+              <li>User score <b>{this.props.data.vote_average}</b> out of <b>{this.props.data.vote_count}</b> votes</li>
+              <ProgressBar userRating={this.props.data.vote_average} />
+            </ul>
+            <div class="moreinfo">
+              <Link to={"/movie-detail/" + this.props.data.id} >More Info</Link>
             </div>
           </div>
-          <hr />
         </div>
-        </Link>
-      );
-   }
+        <hr />
+      </div>
+    );
+  }
 }
 
 export default MovieCard;

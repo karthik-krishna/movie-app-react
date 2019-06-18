@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from "../layouts/Header";
 import Footer from "../layouts/Footer";
+import ProgressBar from '../components/ProgressBar'
 
 import { getMovieDetails } from '../actions'
 import { bindActionCreators } from 'redux';
@@ -50,7 +51,9 @@ class MovingDetail extends Component {
                   <p>{this.props.moviedetail.overview}</p>
                   <ul >
                     <li>Is <b>A</b> Rated : <b>{this.props.moviedetail.adult ? 'Yes' : 'No'}</b></li>
-                    <li>Vote average is <b>{this.props.moviedetail.vote_average}</b> out of <b>{this.props.moviedetail.vote_count}</b> votes</li>
+                    <li>User score <b>{this.props.moviedetail.vote_average}</b> out of <b>{this.props.moviedetail.vote_count}</b> votes
+                      <div><ProgressBar userRating={this.props.moviedetail.vote_average} /></div>
+                    </li>
                     <li>Budget : ${this.props.moviedetail.budget}</li>
                     <li>Genres :
                         <ul>
