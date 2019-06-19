@@ -12,7 +12,7 @@ let searchquery = '';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 1, listing:'NOW_PLAYING' }
+    this.state = { page: 1, listing: 'NOW_PLAYING' }
   }
 
   componentDidMount() {
@@ -24,19 +24,19 @@ class Home extends Component {
   }
 
   handleSubmit = (e) => {
-    this.setState({listing:'SEARCH'})
+    this.setState({ listing: 'SEARCH' })
     e.preventDefault();
     this.props.actions.getMovies(searchquery, 1)
   }
 
   loadMoreMovies = (page) => {
-    if (this.state.listing==='NOW_PLAYING') {
+    if (this.state.listing === 'NOW_PLAYING') {
       this.props.actions.getNowPlayingMovies(page);
-    } 
-    else if (this.state.listing==='SEARCH') {
+    }
+    else if (this.state.listing === 'SEARCH') {
       this.props.actions.getMovies(searchquery, page)
     }
-    window.scroll(0,0)    
+    window.scroll(0, 0)
   }
 
   render() {

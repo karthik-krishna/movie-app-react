@@ -1,6 +1,6 @@
 {
-  "short_name": "Movie App",
-  "name": "Movie App",
+  "short_name": "Movie App React",
+  "name": "Movie App React",
   "icons": [
     {
       "src": "favicon.ico",
