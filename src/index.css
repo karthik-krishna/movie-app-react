@@ -123,3 +123,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
   margin-top:15px;
   margin-bottom: 15px;
 }
+.panel-heading {
+  font-size: 20px;
+  font-style: italic;
+}
+.panel{
+  border: 0;
+  margin-bottom: 0px;
+}
+.panel-body {
+ padding: 0px;
+}
