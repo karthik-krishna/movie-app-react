@@ -43,7 +43,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <div className="bg-image">
+        <div className="bg-image padtop">
           <div className="container">
             <div className="col-sm-12">
               <div className="jumbotron mt-15 card">

@@ -85,6 +85,13 @@ code {
   padding-top: 8px;
 }
 
+
+@media screen and (max-width: 767px) {
+  .bg-image{
+      height:280px
+  }
+}
+
 .media-body {
   padding: 12px 15px 0px 0px;
   position: relative;

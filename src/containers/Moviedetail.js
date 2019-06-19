@@ -130,8 +130,8 @@ class MovingDetail extends Component {
                       <div className="tab-content">
                         <div id="trailer" className="tab-pane fade in active">
                           <h3>Trailers</h3>
-                          {this.props.moviedetail.videos ? this.props.moviedetail.videos.results.map((item) => <div key={item.id} className="col-md-6">
-                            <iframe width="100%" height="300" frameBorder="0" allow="autoplay; encrypted-media" src={"https://www.youtube.com/embed/" + item.key} title={item.key}></iframe></div>) : null}
+                          {this.props.moviedetail.videos && this.props.moviedetail.videos.results.length>0 ? this.props.moviedetail.videos.results.map((item) => <div key={item.id} className="col-md-6">
+                            <iframe width="100%" height="300" frameBorder="0" allow="autoplay; encrypted-media" src={"https://www.youtube.com/embed/" + item.key} title={item.key}></iframe></div>) : 'No Trailers, yet'}
                         </div>
                         <div id="reviews" className="tab-pane fade in">
                           <h3>Reviews</h3>
@@ -146,13 +146,13 @@ class MovingDetail extends Component {
                         </div>
                         <div id="similar" className="tab-pane fade">
                           <h3>Similar Movies</h3>
-                          {this.props.similar.results ? this.props.similar.results.map((item) => <div key={item.id} className="col-md-3 text-center">
-                            <Link to={"/movie-detail/" + item.id}><img className="img-thumbnail margintb" src={this.state.base + '/w200' + item.poster_path} title={item.key} alt={item.title} /></Link></div>) : null}
+                          {this.props.similar.results && this.props.similar.results.length>0 ? this.props.similar.results.map((item) => <div key={item.id} className="col-md-3 text-center">
+                            <Link to={"/movie-detail/" + item.id}><img className="img-thumbnail margintb" src={this.state.base + '/w200' + item.poster_path} title={item.key} alt={item.title} /></Link></div>) : 'No similar movies are found'}
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+
                 </div>
               </div>
           </div>

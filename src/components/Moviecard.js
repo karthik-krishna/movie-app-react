@@ -4,14 +4,19 @@ import ProgressBar from './ProgressBar'
 
 class MovieCard extends Component {
   render() {
-    const fixHeight={height:'300px'};
+    const fixHeight = { height: '300px' };
     return (
       <div className="col-md-6 ">
-        <div className="media card" style={fixHeight}>
+        <div className="media card" >
+          <Link to={"/movie-detail/" + this.props.data.id}>
+            <div className="visible-xs text-center">
+              <img src={this.props.data.poster_path ? 'https://image.tmdb.org/t/p/w200/' + this.props.data.poster_path : 'https://via.placeholder.com/200x300'} alt={this.props.data.title} />
+            </div>
+          </Link>
           <div className="media-left">
-            <img src={this.props.data.poster_path ? 'https://image.tmdb.org/t/p/w200/' + this.props.data.poster_path : 'https://via.placeholder.com/200x300'} alt="poster" />
+            <img className="media-object hidden-xs" style={fixHeight} src={this.props.data.poster_path ? 'https://image.tmdb.org/t/p/w200/' + this.props.data.poster_path : 'https://via.placeholder.com/200x300'} alt={this.props.data.title} />
           </div>
-          <div className="media-body">
+          <div className="media-body hidden-xs">
             <h4 className="media-heading"><Link to={"/movie-detail/" + this.props.data.id} >{this.props.data.title}</Link> : {this.props.data.release_date}</h4>
             <div className="block-with-text">
               {this.props.data.overview ? this.props.data.overview : 'No Description'}
