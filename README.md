@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The application uses axios for http requests and uses [TMDB](https://developers.themoviedb.org/3/getting-started/introduction) (The Movie Data Base) apis for the data. 
 
-# Features which can be implemented in future.
+## Features which can be implemented in future.
 * Show recommended movies based on search
 * Rate the movie as a guest user
 * Authentication 
