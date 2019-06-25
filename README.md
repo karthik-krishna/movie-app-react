@@ -1,4 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and uses redux for state management system and consists of 3 pages search, upcoming and movie detail page, search page gives you list of all the movies based on the search query and upcoming movies page gives you a list of all upcoming movies . The application uses axios for http requests and uses TMDB apis. The application is also offline compatible (PWA).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and uses redux for state management system and consists of 3 pages home, upcoming and movie detail page, search page gives you list of all the movies based on the search query and upcoming movies page gives you a list of all upcoming movies and by clicking on any movie , it will be re-directed to its detail page where a brief description of the movie and few details related to the movie will be displayed. Below you can also find cast and crew, the trailers related to the movie, reviews and similar movies.
+
+The application uses axios for http requests and uses [TMDB](https://developers.themoviedb.org/3/getting-started/introduction) (The Movie Data Base) apis for the data. 
+
+# Features which can be implemented in future.
+* Show recommended movies based on search
+* Rate the movie as a guest user
+* Authentication 
+* Display TV shows, add fav shows, latest episodes etc.,
+* implement pagination for reviews and similar movies in movie detail page
+* Can display 6-7 lines of reviews and then can have a read more button which can be re-directed to another page with complete review. There another service call can be made based on review-id
+
+After authentication
+* Add movie to favourite,
+* Show the favourite movies
+* Rate the movie or Link the rated movie as guest user to the authenticated user
+
+Unit testing for newly added services
+
 
 ## Available Scripts
 
