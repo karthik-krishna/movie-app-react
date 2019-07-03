@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   padding: 0;
@@ -12,6 +15,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 .pagination>li>span{
 	cursor: pointer;
 }
@@ -29,9 +33,10 @@ code {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border: 1px solid #e3e3e3;
 }
-.mt-15{
-  margin-top:15%;
+.mt-in-percent{
+  margin-top:12%;
 }
+
 .bg-image{
   background-size: cover;
   background-repeat: no-repeat;

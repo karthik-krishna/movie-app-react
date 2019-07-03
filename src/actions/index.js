@@ -103,9 +103,9 @@ export const getMovieDetails = (movieId) => {
   };
 };
 
-export const getSimilarMovies = (movieId) => {
+export const getSimilarMovies = (movieId,page) => {
   return (dispatch) => {
-    return axios.get(baseURL + 'movie/' + movieId + '/similar?api_key=' + apikey)
+    return axios.get(baseURL + 'movie/' + movieId + '/similar?api_key=' + apikey+'&page='+page)
       .then(response => {
         dispatch(fetchSimilarMovies(response.data))
       })

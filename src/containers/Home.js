@@ -43,10 +43,11 @@ class Home extends Component {
     return (
       <div>
         <Header />
+        
         <div className="bg-image padtop">
           <div className="container">
             <div className="col-sm-12">
-              <div className="jumbotron mt-15 card">
+              <div className="jumbotron mt-in-percent card">
                 <form onSubmit={this.handleSubmit}>
                   <div className="input-group">
                     <input type="search" className="form-control" placeholder="Search for movie" name="searchquery" onChange={this.handleInput} />

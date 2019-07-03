@@ -13,7 +13,8 @@ import { connect } from 'react-redux';
 class MovingDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { base: 'https://image.tmdb.org/t/p' }
+    this.state = { base: 'https://image.tmdb.org/t/p' };
+    this.myRef = null;
   }
 
   componentDidMount() {
@@ -21,8 +22,10 @@ class MovingDetail extends Component {
     this.props.actions.getMovieCredits(this.props.match.params.id);
   }
 
+  scrollToMyRef = () => window.scrollTo(0, this.myRef.offsetTop+900);
+
   getsimilar = () => {
-    this.props.actions.getSimilarMovies(this.props.match.params.id)
+    this.props.actions.getSimilarMovies(this.props.match.params.id, 1)
   }
 
   getreviews = () => {
@@ -38,8 +41,14 @@ class MovingDetail extends Component {
     }
   }
 
+  loadMoreReviews = (page) => {
+    this.props.actions.getMovieReviews(this.props.match.params.id, page);
+    this.scrollToMyRef();
+  }
+
   loadMoreMovies = (page) => {
-    this.props.actions.getMovieReviews(this.props.match.params.id, page)
+    this.props.actions.getSimilarMovies(this.props.match.params.id, page);
+    this.scrollToMyRef();
   }
 
 
@@ -53,7 +62,8 @@ class MovingDetail extends Component {
     const bgPosterMobile = {
       backgroundImage: 'url(' + backdrop_path_mobile + ')'
     }
-    const maxWidth = { maxWidth: 'initial' }
+    const maxWidth = { maxWidth: 'initial' };
+    const fixHeight = { height: '300px' };
     return (
       <div>
         <Header />
@@ -78,7 +88,7 @@ class MovingDetail extends Component {
                     <ul className="list-of-details">
                       <li>Is <b>A</b> Rated : <b>{this.props.moviedetail.adult ? 'Yes' : 'No'}</b></li>
                       <li>User score <b>{this.props.moviedetail.vote_average}</b> out of <b>{this.props.moviedetail.vote_count}</b> votes
-                      <div><ProgressBar userRating={this.props.moviedetail.vote_average} /> </div>
+                          <div><ProgressBar userRating={this.props.moviedetail.vote_average} /> </div>
                       </li>
                       <li>Budget : ${this.props.moviedetail.budget}</li>
                       <li>Genres :
@@ -86,7 +96,14 @@ class MovingDetail extends Component {
                           {this.props.moviedetail.genres ? this.props.moviedetail.genres.map((item) => <li style={{ listStyleType: 'disc' }} key={item.id} > {item.name}</li>) : null}
                         </ul>
                       </li>
-                      <li>Revenue : {this.props.moviedetail.revenue}</li>
+                      <li>Languages spoken:
+                        <ul >
+                          {this.props.moviedetail.spoken_languages ? this.props.moviedetail.spoken_languages.map((item) => <li style={{ listStyleType: 'disc' }} key={item.iso_639_1} > {item.name}</li>) : null}
+                        </ul>
+                      </li>
+                      <li>Revenue : ${this.props.moviedetail.revenue}</li>
+                      <li>Duration : {this.props.moviedetail.runtime} mins</li>
+                      <li>IMDB : <a href={"https://www.imdb.com/title/"+this.props.moviedetail.imdb_id} target="_blank" rel="noopener noreferrer">{"https://www.imdb.com/title/"+this.props.moviedetail.imdb_id}</a></li>
                     </ul>
                   </div>
                 </div>
@@ -121,7 +138,7 @@ class MovingDetail extends Component {
                       ) : null}
                     </div>
                   </div>
-                  <div className="col-md-12">
+                  <div className="col-md-12" ref={ (ref) => this.myRef=ref }>
                     <ul className="nav nav-tabs nav-justified">
                       <li className="active"><a data-toggle="tab" href="#trailer">Trailers</a></li>
                       <li><a data-toggle="tab" href="#reviews" onClick={this.getreviews} >Reviews &amp; Critics</a></li>
@@ -141,13 +158,14 @@ class MovingDetail extends Component {
                             {review.content}
                           </blockquote> </div>) : 'No reviews, yet'}
 
-                        <Pagination totalPages={this.props.reviews.total_pages} paginate={this.loadMoreMovies} />
+                        <Pagination totalPages={this.props.reviews.total_pages} paginate={this.loadMoreReviews} />
 
                       </div>
                       <div id="similar" className="tab-pane fade">
                         <h3>Similar Movies</h3>
                         {this.props.similar.results && this.props.similar.results.length > 0 ? this.props.similar.results.map((item) => <div key={item.id} className="col-md-3 text-center">
-                          <Link to={"/movie-detail/" + item.id}><img className="img-thumbnail margintb" src={this.state.base + '/w200' + item.poster_path} title={item.key} alt={item.title} /></Link></div>) : 'No similar movies are found'}
+                          <Link to={"/movie-detail/" + item.id}><img className="img-thumbnail margintb" src={this.state.base + '/w200' + item.poster_path} onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/200x300" }} alt={item.title} title={item.title} style={fixHeight} /></Link></div>) : 'No similar movies are found'}
+                        <Pagination totalPages={this.props.similar.total_pages} paginate={this.loadMoreMovies} />
                       </div>
                     </div>
                   </div>
