@@ -4,6 +4,8 @@ The application uses axios for http requests and uses [TMDB](https://developers.
 
 DEMO : https://movie-guide-react.netlify.com/
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a85124bd-ec5b-46e0-808d-745cded4ed51/deploy-status)](https://app.netlify.com/sites/movie-guide-react/deploys)
+
 ## Features which can be implemented in future.
 * Show recommended movies based on search
 * Rate the movie as a guest user
