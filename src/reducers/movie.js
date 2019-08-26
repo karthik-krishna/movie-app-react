@@ -4,6 +4,8 @@ const movies = (state = {}, action) => {
       return Object.assign({}, state, action.movies);
     case 'GET_NOW_PLAYING_MOVIES':
       return Object.assign({}, state, action.nowPlaying);
+    case "GET_ERROR":
+      return Object.assign({}, state, {error:true});
     default:
       return state
   }

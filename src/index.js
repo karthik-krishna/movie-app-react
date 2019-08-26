@@ -4,22 +4,24 @@ import './index.css';
 import AppRouter from './Approuter';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './reducers'
 import thunk from 'redux-thunk';
 
-const logger = store => next => action => {
-  console.group(action.type)
-  console.info('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  console.groupEnd()
-  return result
-}
+// const logger = store => next => action => {
+//   console.group(action.type)
+//   console.info('dispatching', action)
+//   let result = next(action)
+//   console.log('next state', store.getState())
+//   console.groupEnd()
+//   return result
+// }
 
-const store = createStore(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export const store = createStore(
   rootReducer,
-  applyMiddleware(thunk,logger)
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 ReactDOM.render(

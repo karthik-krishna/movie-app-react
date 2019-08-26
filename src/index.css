@@ -146,3 +146,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 .panel-body {
  padding: 0px;
 }
+.min-height{
+  min-height: calc(90vh - 40px)
+}
