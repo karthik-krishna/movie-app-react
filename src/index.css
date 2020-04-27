@@ -29,6 +29,9 @@ code {
 .navbar{
   margin-bottom:0px;
 }
+.navbar-inverse {
+  background-color: #000;;
+}
 .card{
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border: 1px solid #e3e3e3;
@@ -110,6 +113,7 @@ code {
 }
 .block-with-text{
   height: 100px;
+  width: 94%;
   overflow: hidden;
   position: relative;
 }
@@ -130,6 +134,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 }
 .pointer{
   cursor: pointer;
+}
+
+.media.card ul{
+  padding-left: 10px;
 }
 .margintb{
   margin-top:15px;
