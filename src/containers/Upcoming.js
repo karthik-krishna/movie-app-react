@@ -6,7 +6,7 @@ import Pagination from "../components/Pagination";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getUpcomingMovies } from "../actions";
+import { getUpcomingMovies } from "../state/actions";
 
 class Upcoming extends Component {
   constructor(props) {

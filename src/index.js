@@ -5,7 +5,7 @@ import AppRouter from './Approuter';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
-import rootReducer from './reducers'
+import rootReducer from './state/reducers'
 import thunk from 'redux-thunk';
 
 // const logger = store => next => action => {

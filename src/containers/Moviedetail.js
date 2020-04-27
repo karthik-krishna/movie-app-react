@@ -6,7 +6,7 @@ import Footer from "../layouts/Footer";
 import ProgressBar from '../components/ProgressBar';
 import Pagination from '../components/Pagination'
 
-import { getMovieDetails, getSimilarMovies, getMovieCredits, getMovieReviews } from '../actions'
+import { getMovieDetails, getSimilarMovies, getMovieCredits, getMovieReviews } from '../state/actions'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

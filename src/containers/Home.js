@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination'
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getMovies, getNowPlayingMovies } from '../actions'
+import { getMovies, getNowPlayingMovies } from '../state/actions'
 let searchquery = '';
 
 class Home extends Component {
